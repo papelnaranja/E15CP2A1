@@ -12,8 +12,10 @@
         <div class="col-md-8">
           <h1><%= @history.title %></h1>
           <small><%= time_ago_in_words(@history.created_at) %> ago</small>
+          <p class="user"><%= @history.user.try(:name) %></p>
         </div>
         <div class="col-md-2"></div>
+        
       </div>
 
       <hr>
@@ -28,7 +30,15 @@
       <div class="row">
         <div class="col-md-8"></div>
         <div class="col-md-2">
-          <p><%= link_to 'Edit', edit_history_path(@history), class: "btn btn-warning btn-sm" %> <%= link_to 'Back', histories_path, class: "btn btn-info btn-sm" %></p>
+          <% if user_signed_in? %>
+            <% if current_user.email == @history.user.email || is_admin %> 
+            <p><%= link_to 'Edit', edit_history_path(@history), class: "btn btn-warning btn-sm" %> <%= link_to 'Back', histories_path, class: "btn btn-info btn-sm" %></p>
+            <% end %>
+          <% else %>
+          &nbsp;
+          <% end %>
+
+
         </div>
         <div class="col-md-2"></div>
       </div>
