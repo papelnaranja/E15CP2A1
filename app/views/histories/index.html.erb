@@ -7,33 +7,6 @@
   </div>
 </div>
 
-<%# if user_signed_in? && is_admin %>
-
-<div class="row">
-  <div class="col-md-12">
-    <table class="table">
-    <thead>
-      <th>Nombre</th>
-      <th>Username </th>
-      <th>Email</th>
-      <th>Admin</th>
-    </thead>
-    <tbody>
-      <% @users.each do |user| %>
-      <tr>
-        <td>user.name </td>
-        <td>user.username </td>
-        <td>user.email </td>
-        <td>user.admin </td>
-      </tr>
-      <% end %>
-    
-    </tbody>
-    </table>
-  </div>
-
-</div>
-<%# end %>
 <div class="row">
   <% @histories.reverse.each do |history| %>
     <div class="col-sm-6 col-md-4">

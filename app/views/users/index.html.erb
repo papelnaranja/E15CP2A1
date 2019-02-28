@@ -1,0 +1,45 @@
+
+
+
+<% if user_signed_in? && is_admin %>
+<h1>Usuario</h1>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+    <thead>
+      <th>Nombre</th>
+      <th>Username </th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Acciones</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td>
+            <% if user.admin == true  %>
+            Si
+            <% else %>
+            No
+            <% end %>
+        </td>
+        <td>
+        <%= link_to 'Cambiar permisos', user_path(user.id) , class:'btn btn-success', method: :patch%>        
+
+        </td>
+      </tr>
+      <% end %>
+    
+    </tbody>
+    </table>
+
+    </form>
+  </div>
+
+</div>
+<% else %>
+  <div class="alert alert-warning">No eres admin</div>
+<% end %>
